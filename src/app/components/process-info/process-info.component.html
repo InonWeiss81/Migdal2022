@@ -1,0 +1,91 @@
+<div id="process-info-container">
+    <div class="header">
+        {{ texts.Title }}
+    </div>
+    <div class="details">
+        <div>
+            {{ texts.CustomerDetails }}:
+        </div>
+        <div>
+            <span>{{ texts.Name }}</span>
+            <span>{{ fieldsData.firstName + ' ' + fieldsData.lastName }}</span>
+        </div>
+        <div>
+            <span>{{ texts.PersonalId }}</span>
+            <span>{{ fieldsData.identityType + fieldsData.identity }}</span>
+        </div>
+        <div>
+            <span>{{ texts.Age }}</span>
+            <span>{{ fieldsData.age }}</span>
+        </div>
+        <div>
+            <span>{{ texts.Address }}</span>
+            <span>{{ fieldsData.address.streetName }}, {{ fieldsData.address.cityName }}</span>
+        </div>
+
+    </div>
+    <div class="form">
+        <form [formGroup]="processInfoForm">
+            <div class="form-column">
+                <div class="form-row">
+                    <label for="super-claim-type" class="required">{{ texts.SuperClaimType }}: </label>
+                    <select id="super-claim-type" formControlName="superClaimType">
+                        <option class="default-option" value="">{{ texts.Select }}</option>
+                        <option *ngFor="let item of dropdown.superClaimType" [value]="item.code">
+                            {{ item.value }}
+                        </option>
+                    </select>
+                </div>
+                <validation-error-message [element]="superClaimType"></validation-error-message>
+                <div class="form-row">
+                    <label for="claim-cause" class="required">{{ texts.ClaimCause }}: </label>
+                    <select id="claim-cause" formControlName="claimCause" (change)="claimCauseChanged()">
+                        <option class="default-option" value="">{{ texts.Select }}</option>
+                        <option *ngFor="let item of dropdown.claimCause" [value]="item.code">
+                            {{ item.value }}
+                        </option>
+                    </select>
+                </div>
+                <validation-error-message [element]="claimCause"></validation-error-message>
+                <div class="form-row">
+                    <label for="submited-by" class="required">{{ texts.SubmitedBy }}: </label>
+                    <select id="submited-by" formControlName="submitedBy">
+                        <option class="default-option" value="">{{ texts.Select }}</option>
+                        <option *ngFor="let item of dropdown.submitedBy" [value]="item.code">
+                            {{ item.value }}
+                        </option>
+                    </select>
+                </div>
+                <validation-error-message [element]="submitedBy"></validation-error-message>
+            </div>
+            <div class="form-column">
+                <div class="form-row">
+                    <label for="event-date" class="required">{{ texts.EventDate }}: </label>
+                    <input id="event-date" type="date" formControlName="eventDate">
+                </div>
+                <validation-error-message [element]="eventDate"></validation-error-message>
+                <div class="form-row">
+                    <label for="injury-type" [ngClass]="{ 'required': injuryTypeEnabled, 'text-disabled': !injuryTypeEnabled }">{{ texts.InjuryType }}: </label>
+                    <select id="injury-type" formControlName="injuryType">
+                        <option class="default-option" value="">{{ claimCause?.valid ? texts.Select : texts.SelectClaimCause }}</option>
+                        <option *ngFor="let item of dropdown.injuryType" [value]="item.code">
+                            {{ item.value }}
+                        </option>
+                    </select>
+                </div>
+                <validation-error-message [element]="injuryType"></validation-error-message>
+                <div class="form-row">
+                    <label for="submition-method">{{ texts.SubmitionMethod }}: </label>
+                    <select id="submition-method" formControlName="submitionMethod">
+                        <option class="default-option" value="">{{ texts.Select }}</option>
+                        <option *ngFor="let item of dropdown.submitionMethod" [value]="item.code">
+                            {{ item.value }}
+                        </option>
+                    </select>
+                </div>
+                <validation-error-message [element]="submitionMethod"></validation-error-message>
+            </div>
+        </form>
+    </div>
+
+</div>

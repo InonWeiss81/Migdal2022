@@ -1,0 +1,16 @@
+button {
+    background: linear-gradient(to bottom , #06005e 70%, #04003c);
+    color: white;
+    border-radius: 4px !important;
+    font-weight: normal;
+    padding: 1px 16px;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+

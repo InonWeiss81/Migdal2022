@@ -1,0 +1,25 @@
+<div id="app-main-container">
+    <div id="app-main-upper">
+        <div class="right">
+            <div>
+                {{ texts.Claim }}: {{ fieldsData.superClaimNum }}
+            </div>
+            <div>
+                {{ texts.ClaimStatus }}: {{ fieldsData.superClaimStatus.value }}
+            </div>
+        </div>
+        <div class="left">
+            <button>{{ texts.RefreshProcess }}</button>
+        </div>
+    </div>
+
+    <app-process-info (formValidity)="setContinueBtn($event)"></app-process-info>
+    <app-contacts-assembly></app-contacts-assembly>
+    <app-contacts></app-contacts>
+
+    <div id="app-main-lower">
+        <div>
+            <button #continueBtn>{{ texts.Continue }}<b>&#8592;</b></button>
+        </div>
+    </div>
+</div>

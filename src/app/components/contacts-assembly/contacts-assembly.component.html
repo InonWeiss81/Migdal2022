@@ -1,0 +1,29 @@
+<div id="contacts-assembly-container">
+    <div class="header">
+        {{ texts.Title }}
+    </div>
+    <div class="actions">
+        <div>
+            {{ texts.ContactsInProcess }}: 
+            <b>{{ contactsCount }}</b>
+        </div>
+        <div>
+            {{ texts.PossibleActions }}:
+        </div>
+        <div>
+            <button (click)="addCustomer()">
+                {{ texts.AddCustomer }}
+            </button>
+        </div>
+        <div>
+            <button (click)="totalReset()">
+                {{ texts.TotalReset }}
+            </button>
+        </div>
+        <div>
+            <button (click)="contactsReset()">
+                {{ texts.ContactsReset }}
+            </button>
+        </div>
+        
+</div>

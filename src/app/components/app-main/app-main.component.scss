@@ -1,0 +1,32 @@
+#app-main-container {
+
+    #app-main-upper {
+        display: flex;
+        margin-left: 100px;
+        .right {
+            display: flex;
+            width: 50%;
+            justify-content: space-evenly;
+        }
+        .left {
+            display: flex;
+            width: 50%;
+            justify-content: flex-end;
+        }
+    }
+
+    #app-main-lower {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        flex-direction: row;
+        margin-left: 100px;
+        button {
+            font-size: large;
+            b {
+                font-weight: bold;
+                margin-right: 10px;
+            }
+        }
+    }
+}

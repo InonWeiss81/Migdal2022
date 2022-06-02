@@ -1,0 +1,68 @@
+#contacts-container {
+
+    .header {}
+
+    .table-container,
+    .form-container {
+        padding-left: 100px;
+
+        table {
+
+            thead {
+
+                tr {}
+            }
+
+            tbody {
+
+                tr {
+                    :first-child {
+                        padding-right: 24px;
+                    }
+
+                    input[type='checkbox'] {
+                        transform: scale(1.5);
+                    }
+                }
+            }
+        }
+    }
+
+    .form-container {
+        tr {
+            display: flex;
+
+            td:not(:first-child) {
+
+                input,
+                select {
+                    width: 80%;
+                    padding: 0 !important;
+                }
+
+                img {
+                    vertical-align: top;
+                    margin-right: 10px;
+                    cursor: pointer;
+                    &.disabled {
+                        opacity: 0.5;
+                        cursor: not-allowed;
+                    }
+                }
+            }
+        }
+    }
+
+    .contacts-footer {
+
+        .link {
+            color: #004ab9;
+            cursor: pointer;
+
+            &:hover {
+                color: #1e0097;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,49 @@
+#process-info-container {
+
+    .header {}
+
+    .details {
+        display: flex;
+        justify-content: space-evenly;
+        padding-left: 300px;
+
+        div {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .form form {
+        display: flex;
+        flex-direction: row;
+
+        .form-column {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            margin-left: 100px;
+
+            .form-row {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                select, input {
+                    width: 200px;
+                }
+
+                .required {
+                    &::before {
+                        color: red;
+                        content: '*';
+                    }
+                }
+
+                .text-disabled {
+                    opacity: 0.5;
+                }
+            }
+        }
+
+    }
+}

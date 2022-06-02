@@ -1,0 +1,78 @@
+<div id="contacts-container">
+    <div class="header">
+        {{ texts.Title }}
+    </div>
+    <div class="table-container">
+        <table class="table table-striped">
+            <thead>
+                <tr #contactsHeaderRow>
+                    <th style="width: 8%">{{ texts.Favorite }}</th>
+                    <th style="width: 20%">{{ texts.ContactName }}</th>
+                    <th style="width: 12%">{{ texts.Type }}</th>
+                    <th style="width: 20%">{{ texts.Address }}</th>
+                    <th style="width: 15%">{{ texts.Phone }}</th>
+                    <th style="width: 25%">{{ texts.Email }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="display" *ngFor="let item of data">
+                    <td><input type="checkbox" [(ngModel)]="item.deliveryFlag" /></td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.type.value }}</td>
+                    <td>{{ item.address }}</td>
+                    <td>{{ item.phoneNumber.toString() | phoneNumber }}</td>
+                    <td>{{ item.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="form-container" *ngIf="isAddContact">
+        <form [formGroup]="newContactsForm">
+            <table>
+                <tbody>
+                    <tr #contactsFormRow>
+                        <td>
+                            <input type="checkbox" formControlName="deliveryFlag" />
+                        </td>
+                        <td>
+                            <input type="text" formControlName="name" [placeholder]="texts.HebrewLettersOnly" />
+                            <validation-error-message [element]="name"></validation-error-message>
+                        </td>
+                        <td>
+                            <select formControlName="type">
+                                <option class="default-option" value="">{{ texts.Select }}</option>
+                                <option *ngFor="let item of dropdown.contactPersonType" [value]="item.code">
+                                    {{ item.value }}
+                                </option>
+                            </select>
+                            <validation-error-message [element]="type"></validation-error-message>
+                        </td>
+                        <td>
+                            <input type="text" formControlName="address" />
+                        </td>
+                        <td>
+                            <input type="text" formControlName="phoneNumber"
+                                [placeholder]="texts.NumbersOnly10Digits" />
+                            <validation-error-message [element]="phoneNumber"></validation-error-message>
+                        </td>
+                        <td (ngInit)="setFormColWidths()" [isLast]="true">
+                            <input type="text" formControlName="email" />
+                            
+                            <img src="\assets\ButtonPlus.png" 
+                            [ngClass]="{'disabled': !newContactsFormValid }"
+                            [alt]="texts.SaveContact" 
+                            [title]="newContactsFormValid ? texts.SaveContact : texts.CheckFormsError" 
+                            (click)="saveContact()">
+                            <validation-error-message [element]="email"></validation-error-message>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+    <div class="contacts-footer">
+        <span class="link" (click)="addContact()">{{ texts.AddContact }}</span>
+    </div>
+
+</div>
