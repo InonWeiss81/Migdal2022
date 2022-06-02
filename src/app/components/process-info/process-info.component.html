@@ -30,7 +30,7 @@
                 <div class="form-row">
                     <label for="super-claim-type" class="required">{{ texts.SuperClaimType }}: </label>
                     <select id="super-claim-type" formControlName="superClaimType">
-                        <option class="default-option" value="">{{ texts.Select }}</option>
+                        <option class="default-option" value="" selected>{{ texts.Select }}</option>
                         <option *ngFor="let item of dropdown.superClaimType" [value]="item.code">
                             {{ item.value }}
                         </option>
@@ -40,7 +40,7 @@
                 <div class="form-row">
                     <label for="claim-cause" class="required">{{ texts.ClaimCause }}: </label>
                     <select id="claim-cause" formControlName="claimCause" (change)="claimCauseChanged()">
-                        <option class="default-option" value="">{{ texts.Select }}</option>
+                        <option class="default-option" value="" selected>{{ texts.Select }}</option>
                         <option *ngFor="let item of dropdown.claimCause" [value]="item.code">
                             {{ item.value }}
                         </option>
@@ -50,7 +50,7 @@
                 <div class="form-row">
                     <label for="submited-by" class="required">{{ texts.SubmitedBy }}: </label>
                     <select id="submited-by" formControlName="submitedBy">
-                        <option class="default-option" value="">{{ texts.Select }}</option>
+                        <option class="default-option" value="" selected>{{ texts.Select }}</option>
                         <option *ngFor="let item of dropdown.submitedBy" [value]="item.code">
                             {{ item.value }}
                         </option>
@@ -67,7 +67,7 @@
                 <div class="form-row">
                     <label for="injury-type" [ngClass]="{ 'required': injuryTypeEnabled, 'text-disabled': !injuryTypeEnabled }">{{ texts.InjuryType }}: </label>
                     <select id="injury-type" formControlName="injuryType">
-                        <option class="default-option" value="">{{ claimCause?.valid ? texts.Select : texts.SelectClaimCause }}</option>
+                        <option class="default-option" value="" selected>{{ claimCause?.valid ? texts.Select : texts.SelectClaimCause }}</option>
                         <option *ngFor="let item of dropdown.injuryType" [value]="item.code">
                             {{ item.value }}
                         </option>
@@ -77,7 +77,7 @@
                 <div class="form-row">
                     <label for="submition-method">{{ texts.SubmitionMethod }}: </label>
                     <select id="submition-method" formControlName="submitionMethod">
-                        <option class="default-option" value="">{{ texts.Select }}</option>
+                        <option class="default-option" value="" selected>{{ texts.Select }}</option>
                         <option *ngFor="let item of dropdown.submitionMethod" [value]="item.code">
                             {{ item.value }}
                         </option>

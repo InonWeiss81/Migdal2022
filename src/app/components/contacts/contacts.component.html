@@ -16,7 +16,7 @@
             </thead>
             <tbody>
                 <tr class="display" *ngFor="let item of data">
-                    <td><input type="checkbox" [(ngModel)]="item.deliveryFlag" /></td>
+                    <td><input type="checkbox" [(ngModel)]="item.deliveryFlag" (change)="deliveryFlagChanged()"/></td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.type.value }}</td>
                     <td>{{ item.address }}</td>
@@ -32,7 +32,7 @@
                 <tbody>
                     <tr #contactsFormRow>
                         <td>
-                            <input type="checkbox" formControlName="deliveryFlag" />
+                            <input type="checkbox" formControlName="deliveryFlag"/>
                         </td>
                         <td>
                             <input type="text" formControlName="name" [placeholder]="texts.HebrewLettersOnly" />

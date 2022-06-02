@@ -39,5 +39,15 @@
                 margin-right: 10px;
             }
         }
+
+        img {
+            width: 28px;
+            vertical-align: top;
+            margin-left: -4px;
+            opacity: 1;
+            margin-top: -14px;
+            z-index: 9999;
+            cursor: wait;
+        }
     }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { AppMainComponent } from './components/app-main/app-main.component';
 import { ProcessInfoComponent } from './components/process-info/process-info.component';
@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidationErrorMessageComponent } from './components/shared/validation-error-message/validation-error-message.component';
 import { PhoneNumberPipe } from './pipes/phone-number.pipe';
 import { NgInitDirective } from './directives/init.directive';
+import { ModalComponent } from './components/shared/modal/modal.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,12 +22,15 @@ import { NgInitDirective } from './directives/init.directive';
     ContactsComponent,
     ValidationErrorMessageComponent,
     PhoneNumberPipe,
-    NgInitDirective
+    NgInitDirective,
+    ModalComponent    
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModalModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

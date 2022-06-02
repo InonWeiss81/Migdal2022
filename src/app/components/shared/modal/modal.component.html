@@ -1,0 +1,13 @@
+<ng-template #content let-modal>
+    <div class="modal-header" dir="rtl">
+      <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
+      <button type="button" class="btn-close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        {{ text }}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">{{ closeBtnText }}</button>
+    </div>
+  </ng-template>
+  

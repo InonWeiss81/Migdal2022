@@ -34,7 +34,9 @@
               "src/styles.scss",
               "bootstrap/scss/bootstrap.scss"
             ],
-            "scripts": []
+            "scripts": [
+              
+            ]
           },
           "configurations": {
             "production": {

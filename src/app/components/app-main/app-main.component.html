@@ -9,16 +9,17 @@
             </div>
         </div>
         <div class="left">
-            <button>{{ texts.RefreshProcess }}</button>
+            <button (click)="refreshProcessClicked()">{{ texts.RefreshProcess }}</button>
         </div>
     </div>
 
-    <app-process-info (formValidity)="setContinueBtn($event)"></app-process-info>
+    <app-process-info (formValidity)="setContinueBtnFromProcessInfo($event)"></app-process-info>
     <app-contacts-assembly></app-contacts-assembly>
     <app-contacts></app-contacts>
 
     <div id="app-main-lower">
         <div>
+            <img *ngIf="showWarningSign" src="\assets\WarningSignRed.png" [alt]="" [title]="warningData">
             <button #continueBtn>{{ texts.Continue }}<b>&#8592;</b></button>
         </div>
     </div>

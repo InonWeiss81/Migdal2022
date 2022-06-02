@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Dropdown } from 'src/app/data/dropdown';
 import { Insured } from 'src/app/interfaces/i-process';
 import { IProcessInfoTexts } from 'src/app/interfaces/i_process-info-texts';
@@ -8,6 +8,7 @@ import { TextService } from 'src/app/services/texts.service';
 import { ContactTypeExistance } from '../shared/custom-validators/contact-type.validator';
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { AppMainService } from 'src/app/services/app-main.service';
 
 @Component({
   selector: 'app-process-info',
@@ -25,32 +26,52 @@ export class ProcessInfoComponent implements OnInit, OnDestroy {
 
   formValiditySub: Subscription | undefined;
 
+  refreshProcessSub: Subscription | undefined;
+
   @Output() formValidity: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  processInfoForm = this.formBuilder.group({
-    superClaimType: ['', Validators.required],
-    claimCause: ['', Validators.required],
-    submitedBy: ['', [Validators.required, ContactTypeExistance(this.fieldsDataService.Data.contactPersons)]],
-    eventDate: ['', Validators.required],
-    injuryType: [{ value: '', disabled: !this.injuryTypeEnabled }, Validators.required],
-    submitionMethod: [''],
-  });
+  processInfoForm!: FormGroup
 
 
   ngOnInit(): void {
     this.texts = this.textService.ProcessInfoComponent;
     this.fieldsData = this.fieldsDataService.Data.insured;
 
+    this.initializeForm();
+
+    this.refreshProcessSub = this.appMainService.refreshProcessClick.subscribe(
+      () => {
+        this.injuryType?.disable({ onlySelf: true, emitEvent: false });
+        this.initializeForm();
+      }
+    );
+  }
+
+  private setFormChangeEvents() {
     this.formValiditySub = this.processInfoForm.statusChanges
       .pipe(
         filter(() => this.processInfoForm.valid))
       .subscribe(() => this.onFormValid());
 
-      this.formValiditySub = this.processInfoForm.statusChanges
+    this.formValiditySub = this.processInfoForm.statusChanges
       .pipe(
         filter(() => this.processInfoForm.invalid))
       .subscribe(() => this.onFormInvalid());
+  }
 
+  initializeForm() {
+    this.injuryTypeEnabled = false;
+    this.processInfoForm = this.formBuilder.group({
+      superClaimType: ['', Validators.required],
+      claimCause: ['', Validators.required],
+      submitedBy: ['', [Validators.required, ContactTypeExistance(this.fieldsDataService.Data.contactPersons)]],
+      eventDate: ['', Validators.required],
+      injuryType: [{ value: '', disabled: !this.injuryTypeEnabled }, Validators.required],
+      submitionMethod: [''],
+    });
+
+    this.setFormChangeEvents();
+    this.onFormInvalid();
   }
 
   claimCauseChanged() {
@@ -65,6 +86,7 @@ export class ProcessInfoComponent implements OnInit, OnDestroy {
   }
 
   onFormValid() {
+    this.appMainService.processInfoForm = this.processInfoForm;
     this.formValidity.emit(true);
   }
 
@@ -95,10 +117,13 @@ export class ProcessInfoComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.formValiditySub?.unsubscribe();
+    this.refreshProcessSub?.unsubscribe();
   }
 
 
   constructor(private textService: TextService, private fieldsDataService: FieldsDataService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder, private appMainService: AppMainService) {
+    
+  }
 
 }

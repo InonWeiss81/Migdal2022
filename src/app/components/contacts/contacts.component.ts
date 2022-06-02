@@ -5,6 +5,7 @@ import { filter } from 'rxjs/operators';
 import { Dropdown } from 'src/app/data/dropdown';
 import { ContactPerson } from 'src/app/interfaces/i-process';
 import { IContactsTexts } from 'src/app/interfaces/i_contacts-texts';
+import { ContactsFavoritesService } from 'src/app/services/contacts-favorites.service';
 import { FieldsDataService } from 'src/app/services/fields-data.service';
 import { TextService } from 'src/app/services/texts.service';
 
@@ -60,6 +61,7 @@ export class ContactsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   updateData() {
     this.data = this.fieldsDataService.Data.contactPersons;
+    this.updateFormFavoritesValid();
   }
 
   initializeForm() {
@@ -84,6 +86,10 @@ export class ContactsComponent implements OnInit, OnDestroy, AfterViewInit {
       const element = this.contactsHeaderRow.nativeElement.childNodes[i];
       this.colWidths.push((element as HTMLTableCellElement).clientWidth)
     }
+  }
+
+  deliveryFlagChanged() {
+    this.updateFormFavoritesValid();
   }
 
   addContact() {
@@ -126,6 +132,11 @@ export class ContactsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.fieldsDataService.addContact(contactPerson);
     this.newContactsForm.reset();
     this.isAddContact = false;
+    this.updateFormFavoritesValid();
+  }
+
+  updateFormFavoritesValid() {
+    this.contactsFavoritesService.updateIsContactsFavoritesValid();
   }
 
 
@@ -154,6 +165,6 @@ export class ContactsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   constructor(private textService: TextService, private fieldsDataService: FieldsDataService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder, private contactsFavoritesService: ContactsFavoritesService) { }
   
 }
