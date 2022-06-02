@@ -1,11 +1,16 @@
 #contacts-assembly-container {
+    padding-left: 100px;
 
     .header {
-
+        font-size: 18px;
+        font-weight: bold;
+        background-color: aliceblue;
+        margin-top: 2px;
+        padding: 10px;
     }
 
     .actions {
-        padding-left: 300px;
+        padding: 20px 0 20px 300px;
         display: flex;
         justify-content: space-evenly;
 

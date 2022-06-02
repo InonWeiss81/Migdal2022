@@ -13,4 +13,5 @@ export interface IContactsTexts {
     SaveContact: string;
     UnexpectedError: string;
     CheckFormsError: string;
+    Cancel: string;
 }

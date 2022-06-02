@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { TextService } from 'src/app/services/texts.service';
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.scss']
 })
-export class ContactsComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
+export class ContactsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   texts!: IContactsTexts;
   data!: ContactPerson[];
@@ -74,10 +74,6 @@ export class ContactsComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   }
 
   ngAfterViewInit(): void {
-    this.getRowWidths();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
     this.getRowWidths();
   }
 

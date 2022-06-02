@@ -1,13 +1,19 @@
 #app-main-container {
+    padding-top: 48px;
 
     #app-main-upper {
+        padding: 20px 0 20px 40px;
+        border-top: 2px outset rgb(121, 85, 194);
+        background-color: #f2f2f2;
         display: flex;
         margin-left: 100px;
+
         .right {
             display: flex;
             width: 50%;
             justify-content: space-evenly;
         }
+
         .left {
             display: flex;
             width: 50%;
@@ -21,8 +27,13 @@
         justify-content: flex-end;
         flex-direction: row;
         margin-left: 100px;
+        padding: 20px 0 20px 40px;
+        border-bottom: 2px outset rgb(121, 85, 194);
+        background-color: #f2f2f2;
+
         button {
             font-size: large;
+
             b {
                 font-weight: bold;
                 margin-right: 10px;

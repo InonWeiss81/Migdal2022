@@ -4,22 +4,22 @@
     </div>
     <div class="details">
         <div>
-            {{ texts.CustomerDetails }}:
+            <b>{{ texts.CustomerDetails }}:</b>
         </div>
         <div>
-            <span>{{ texts.Name }}</span>
+            <b>{{ texts.Name }}</b>
             <span>{{ fieldsData.firstName + ' ' + fieldsData.lastName }}</span>
         </div>
         <div>
-            <span>{{ texts.PersonalId }}</span>
+            <b>{{ texts.PersonalId }}</b>
             <span>{{ fieldsData.identityType + fieldsData.identity }}</span>
         </div>
         <div>
-            <span>{{ texts.Age }}</span>
+            <b>{{ texts.Age }}</b>
             <span>{{ fieldsData.age }}</span>
         </div>
         <div>
-            <span>{{ texts.Address }}</span>
+            <b>{{ texts.Address }}</b>
             <span>{{ fieldsData.address.streetName }}, {{ fieldsData.address.cityName }}</span>
         </div>
 

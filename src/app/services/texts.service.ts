@@ -54,6 +54,7 @@ export class TextService {
         NumbersOnly10Digits: '10 ספרות בלבד',
         SaveContact: 'שמור איש קשר',
         UnexpectedError: 'אירעה שגיאה בלתי צפויה, אנא פנה למפתח האתר',
-        CheckFormsError: 'בדוק שגיאות בטופס'
+        CheckFormsError: 'בדוק שגיאות בטופס',
+        Cancel: 'ביטול'
     }
 }

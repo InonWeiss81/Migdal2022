@@ -1,17 +1,18 @@
 #contacts-container {
+    padding-left: 100px;
 
-    .header {}
+    .header {
+        font-size: 18px;
+        font-weight: bold;
+        background-color: aliceblue;
+        margin-top: 2px;
+        padding: 10px;
+    }
 
     .table-container,
     .form-container {
-        padding-left: 100px;
-
+        
         table {
-
-            thead {
-
-                tr {}
-            }
 
             tbody {
 
@@ -37,6 +38,7 @@
                 input,
                 select {
                     width: 80%;
+                    height: 28px;
                     padding: 0 !important;
                 }
 
@@ -54,6 +56,7 @@
     }
 
     .contacts-footer {
+        padding: 10px;
 
         .link {
             color: #004ab9;

@@ -1,11 +1,20 @@
 #process-info-container {
+    padding-left: 100px;
 
-    .header {}
+    .header {
+        font-size: 18px;
+        font-weight: bold;
+        background-color: aliceblue;
+        margin-top: 2px;
+        padding: 10px;
+    }
 
     .details {
         display: flex;
         justify-content: space-evenly;
-        padding-left: 300px;
+        padding-left: 200px;
+        padding-top: 25px;
+        padding-bottom: 25px;
 
         div {
             display: flex;
@@ -13,37 +22,44 @@
         }
     }
 
-    .form form {
-        display: flex;
-        flex-direction: row;
+    .form {
+        padding: 10px;
+        background-color: #f2f2f2;
 
-        .form-column {
-            width: 30%;
+        form {
             display: flex;
-            flex-direction: column;
-            margin-left: 100px;
+            flex-direction: row;
 
-            .form-row {
+            .form-column {
+                width: 32%;
                 display: flex;
-                flex-direction: row;
-                justify-content: space-between;
+                flex-direction: column;
+                justify-content: flex-end;
+                margin-left: 100px;
 
-                select, input {
-                    width: 200px;
-                }
+                .form-row {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    margin: 5px 0;
 
-                .required {
-                    &::before {
-                        color: red;
-                        content: '*';
+                    select,
+                    input {
+                        width: 200px;
                     }
-                }
 
-                .text-disabled {
-                    opacity: 0.5;
+                    .required {
+                        &::before {
+                            color: red;
+                            content: '*';
+                        }
+                    }
+
+                    .text-disabled {
+                        opacity: 0.5;
+                    }
                 }
             }
         }
-
     }
 }
