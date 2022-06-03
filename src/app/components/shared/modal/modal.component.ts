@@ -1,48 +1,39 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AppMainService } from 'src/app/services/app-main.service';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls:[
+  styleUrls: [
     './modal.component.scss'
   ]
 })
 export class ModalComponent implements OnInit, AfterViewInit {
   closeResult = '';
 
-  title: string = 'היי! אם זו פעם ראשונה שלך כאן, כדאי שתקרא\\י את ההערות הבאות...'
-
-  text: string = '';
+  title: string = 'היי! אם זו פעם ראשונה שלך כאן, כדאי שתקרא\\י את ההערות הבאות...';
 
   closeBtnText: string = 'קראתי והבנתי';
 
   @ViewChild('content') content!: ElementRef<HTMLElement>;
 
-  constructor(private modalService: NgbModal, private appMainService: AppMainService) {}
+  constructor(private modalService: NgbModal, private appMainService: AppMainService) { }
 
-  ngOnInit(): void {
-    this.appMainService.getReadmeFileText().subscribe(
-      data => {
-        data.text().then(
-          text => {
-            this.text = text;
-          }
-        );
-      }
-    )
+  ngOnInit() {
+
   }
 
   ngAfterViewInit(): void {
-    if (!sessionStorage.getItem('modalChecked')) {
-      this.open();
-    }
+    this.open();
   }
 
   open() {
     this.modalService.open(this.content, { size: 'xl' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
+      if (result == 'Save click') {
+        sessionStorage.setItem('modalChecked', '1');
+      }
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });

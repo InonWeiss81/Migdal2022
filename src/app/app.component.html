@@ -1,4 +1,10 @@
 <div class="container" dir="rtl">
   <app-main></app-main>
-  <app-modal></app-modal>
+  <app-modal *ngIf="modalOpen"></app-modal>
+  <div class="footer">
+    פותח על ידי ינון וייס | 
+    <a href="#" (click)="openModal()">
+      מידע שימושי
+    </a>
+  </div>
 </div>

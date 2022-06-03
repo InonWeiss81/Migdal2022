@@ -15,10 +15,6 @@ export class AppMainService {
         this.refreshProcessClick.next(null); 
     }
 
-    getReadmeFileText(): Observable<File> {
-        return this.http.get<File>('assets/ReadMe.txt');
-    }
-
     constructor(private httpClient: HttpClient) {
         this.http = this.httpClient;
     }

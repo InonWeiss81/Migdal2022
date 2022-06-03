@@ -1,3 +1,4 @@
+import { ContactsService } from 'src/app/services/contacts.service';
 import { Component, OnInit } from '@angular/core';
 import { ContactPerson, Insured } from 'src/app/interfaces/i-process';
 import { IContactsAssemblyTexts } from 'src/app/interfaces/i_contacts-assembly-texts';
@@ -32,10 +33,12 @@ export class ContactsAssemblyComponent implements OnInit {
       email: '',
       id: currentInsured.identity,
       name: currentInsured.firstName + ' ' + currentInsured.lastName,
-      phoneNumber: 123456789,
+      phoneNumber: 0,
       type: { code: 1, value: 'מבוטח' }
     }
-    this.fieldsDataService.addContact(newContact);
+    //this.fieldsDataService.addContact(newContact);
+    this.contactsService.contactToAdd = newContact;
+    this.contactsService.AddContactFlag();
   }
 
 
@@ -50,6 +53,7 @@ export class ContactsAssemblyComponent implements OnInit {
 
 
 
-  constructor(private textService: TextService, private fieldsDataService: FieldsDataService) { }
+  constructor(private textService: TextService, private fieldsDataService: FieldsDataService,
+    private contactsService: ContactsService) { }
 
 }

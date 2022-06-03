@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'Migdal2022';
+  modalOpen: boolean = false;
 
   ngOnInit () {
-    sessionStorage.clear();
+    if (!sessionStorage.getItem('modalChecked')) {
+      this.modalOpen = true;
+    }
+  }
+
+  openModal() {
+    this.modalOpen = false;
+    setTimeout(() => {
+      this.modalOpen = true;
+    }, 100);
+    
   }
 
   constructor() {

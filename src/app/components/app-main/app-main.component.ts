@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { IProcess } from 'src/app/interfaces/i-process';
 import { IAppMainTexts } from 'src/app/interfaces/i_app-main-texts';
 import { AppMainService } from 'src/app/services/app-main.service';
-import { ContactsFavoritesService } from 'src/app/services/contacts-favorites.service';
+import { ContactsService } from 'src/app/services/contacts.service';
 import { FieldsDataService } from 'src/app/services/fields-data.service';
 import { TextService } from 'src/app/services/texts.service';
 
@@ -73,7 +72,7 @@ export class AppMainComponent implements OnInit, AfterViewInit {
   }
 
   constructor(private textService: TextService, private fieldsDataService: FieldsDataService,
-    private contactsFavoritesService :ContactsFavoritesService, private appMainService: AppMainService) { }
+    private contactsFavoritesService :ContactsService, private appMainService: AppMainService) { }
   
 
 }

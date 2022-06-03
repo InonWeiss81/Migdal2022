@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 import { Dropdown } from 'src/app/data/dropdown';
 import { ContactPerson } from 'src/app/interfaces/i-process';
 import { IContactsTexts } from 'src/app/interfaces/i_contacts-texts';
-import { ContactsFavoritesService } from 'src/app/services/contacts-favorites.service';
+import { ContactsService } from 'src/app/services/contacts.service';
 import { FieldsDataService } from 'src/app/services/fields-data.service';
 import { TextService } from 'src/app/services/texts.service';
 
@@ -19,6 +19,7 @@ export class ContactsComponent implements OnInit, OnDestroy, AfterViewInit {
   texts!: IContactsTexts;
   data!: ContactPerson[];
   contactsCountSub: Subscription | undefined;
+  addContactFlag: Subscription | undefined;
   isAddContact: boolean = false;
   newContactsForm!: FormGroup;
   newContactsFormValid: boolean = false;
@@ -40,16 +41,16 @@ export class ContactsComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     );
     this.initializeForm();
-    this.newContactsForm.statusChanges
-      .pipe(
-        filter(() => this.newContactsForm.valid))
-      .subscribe(() => this.onFormValid());
 
-    this.newContactsForm.statusChanges
-      .pipe(
-        filter(() => this.newContactsForm.invalid))
-      .subscribe(() => this.onFormInvalid());
+    this.addContactFlag = this.contactsService.addContactFlag.subscribe(
+      (data) => {
+        this.initializeForm();
+        this.isAddContact = data;
+      }
+    )
   }
+
+
 
   onFormValid() {
     this.newContactsFormValid = true;
@@ -65,14 +66,33 @@ export class ContactsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   initializeForm() {
+    let contact: ContactPerson | undefined = this.contactsService.contactToAdd;
+    let name = contact ? contact.name : '';
+    let type = contact ? contact.type.code : '';
+    let address = contact ? contact.address : '';
+    let phoneNumber = contact ? contact.phoneNumber : '';
+    let email = contact ? contact.email : '';
     this.newContactsForm = this.formBuilder.group({
       deliveryFlag: false,
-      name: ['', [Validators.required, Validators.pattern(/^[א-ת\s]*$/)]],
-      type: ['', Validators.required],
-      address: [''],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      email: ['', Validators.email]
+      name: [name, [Validators.required, Validators.pattern(/^[א-ת\s/'/]*$/)]],
+      type: [type, Validators.required],
+      address: [address],
+      phoneNumber: [phoneNumber, [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      email: [email, Validators.email]
     });
+    this.setFormChangeEvents();
+  }
+
+  setFormChangeEvents() {
+    this.newContactsForm.statusChanges
+      .pipe(
+        filter(() => this.newContactsForm.valid))
+      .subscribe(() => this.onFormValid());
+
+    this.newContactsForm.statusChanges
+      .pipe(
+        filter(() => this.newContactsForm.invalid))
+      .subscribe(() => this.onFormInvalid());
   }
 
   ngAfterViewInit(): void {
@@ -97,6 +117,8 @@ export class ContactsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.closeAddContact();
       return;
     }
+    this.contactsService.contactToAdd = undefined;
+    this.initializeForm();
     this.isAddContact = true;
   }
 
@@ -136,7 +158,7 @@ export class ContactsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   updateFormFavoritesValid() {
-    this.contactsFavoritesService.updateIsContactsFavoritesValid();
+    this.contactsService.updateIsContactsFavoritesValid();
   }
 
 
@@ -165,6 +187,6 @@ export class ContactsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   constructor(private textService: TextService, private fieldsDataService: FieldsDataService,
-    private formBuilder: FormBuilder, private contactsFavoritesService: ContactsFavoritesService) { }
-  
+    private formBuilder: FormBuilder, private contactsService: ContactsService) { }
+
 }
