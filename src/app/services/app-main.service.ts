@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 
-@Injectable({providedIn:'root'})
+@Injectable({ providedIn: 'root' })
 export class AppMainService {
     refreshProcessClick: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
@@ -12,7 +12,7 @@ export class AppMainService {
     private http: HttpClient;
 
     refreshProcess() {
-        this.refreshProcessClick.next(null); 
+        this.refreshProcessClick.next(null);
     }
 
     constructor(private httpClient: HttpClient) {

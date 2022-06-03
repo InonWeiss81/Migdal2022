@@ -15,7 +15,6 @@ export class ContactsAssemblyComponent implements OnInit {
   texts!: IContactsAssemblyTexts;
   contactsCount: number = 0;
 
-
   ngOnInit(): void {
     this.texts = this.textService.ContactsAssemblyComponent;
     this.fieldsDataService.ContactsCount.subscribe(
@@ -36,21 +35,17 @@ export class ContactsAssemblyComponent implements OnInit {
       phoneNumber: 0,
       type: { code: 1, value: 'מבוטח' }
     }
-    //this.fieldsDataService.addContact(newContact);
     this.contactsService.contactToAdd = newContact;
     this.contactsService.AddContactFlag();
   }
-
 
   totalReset() {
     this.fieldsDataService.clearContacts();
   }
 
-
   contactsReset() {
     this.fieldsDataService.clearContacts(true);
   }
-
 
 
   constructor(private textService: TextService, private fieldsDataService: FieldsDataService,

@@ -65,9 +65,12 @@
                 </div>
                 <validation-error-message [element]="eventDate"></validation-error-message>
                 <div class="form-row">
-                    <label for="injury-type" [ngClass]="{ 'required': injuryTypeEnabled, 'text-disabled': !injuryTypeEnabled }">{{ texts.InjuryType }}: </label>
+                    <label for="injury-type"
+                        [ngClass]="{ 'required': injuryTypeEnabled, 'text-disabled': !injuryTypeEnabled }">{{
+                        texts.InjuryType }}: </label>
                     <select id="injury-type" formControlName="injuryType">
-                        <option class="default-option" value="" selected>{{ claimCause?.valid ? texts.Select : texts.SelectClaimCause }}</option>
+                        <option class="default-option" value="" selected>{{ claimCause?.valid ? texts.Select :
+                            texts.SelectClaimCause }}</option>
                         <option *ngFor="let item of dropdown.injuryType" [value]="item.code">
                             {{ item.value }}
                         </option>

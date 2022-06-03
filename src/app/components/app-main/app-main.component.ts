@@ -74,5 +74,4 @@ export class AppMainComponent implements OnInit, AfterViewInit {
   constructor(private textService: TextService, private fieldsDataService: FieldsDataService,
     private contactsFavoritesService :ContactsService, private appMainService: AppMainService) { }
   
-
 }

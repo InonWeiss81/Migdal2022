@@ -49,9 +49,7 @@ export class ContactsComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     )
   }
-
-
-
+  
   onFormValid() {
     this.newContactsFormValid = true;
   }

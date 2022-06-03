@@ -120,10 +120,7 @@ export class ProcessInfoComponent implements OnInit, OnDestroy {
     this.refreshProcessSub?.unsubscribe();
   }
 
-
   constructor(private textService: TextService, private fieldsDataService: FieldsDataService,
-    private formBuilder: FormBuilder, private appMainService: AppMainService) {
-    
-  }
+    private formBuilder: FormBuilder, private appMainService: AppMainService) { }
 
 }
